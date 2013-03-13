@@ -37,6 +37,7 @@ grunt.initConfig({
     },
 
     // you can specify compiling target as options.sassDir, and output dir as options.cssDir.
+    // At now, you can only set sassDir and cssDir options.
     common : {
       options: {
         sassDir: 'page/css/cmn/mxm.css/_temp/',
