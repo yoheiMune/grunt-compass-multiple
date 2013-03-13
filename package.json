@@ -1,0 +1,23 @@
+{
+  "name": "grunt-compass-multiple",
+  "version": "0.1.1",
+  "description": "compass complie at multi threads.",
+  "main": "compassMultiple.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "compass",
+    "comile",
+    "multi",
+    "thread"
+  ],
+  "author": "Yohei Munesada",
+  "license": "MIT",
+  "dependencies": {
+    "grunt-lib-contrib": "~0.3.0",
+    "tmp": "0.0.15",
+    "glob": "~3.1.21"
+  }
+}
