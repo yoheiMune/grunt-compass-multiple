@@ -123,6 +123,14 @@ module.exports = function(grunt) {
       var doneCount = 0;
       for (var i = 0; i < multiple.length; i++) {
         var opt = multiple[i];
+        opt.environment === undefined && (opt.environment = options.environment);
+        opt.outputStyle === undefined && (opt.outputStyle = options.outputStyle);
+        opt.javascriptsDir === undefined && (opt.javascriptsDir = options.javascriptsDir);
+        opt.imagesDir === undefined && (opt.imagesDir = options.imagesDir);
+        opt.fontsDir === undefined && (opt.fontsDir = options.fontsDir);
+        opt.time === undefined && (opt.time = options.time);
+
+
         comileCompassAtMultiThread(opt, function(success) {
 
           if (!success) {
