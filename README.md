@@ -47,7 +47,7 @@ grunt.initConfig({
     // At now, you can only set sassDir and cssDir options.
     common : {
       options: {
-        // every compile need sassDir and cssDir.
+        // every compile needs sassDir and cssDir.
         sassDir: 'page/css/cmn/',
         cssDir: '../static/page/css/cmn/'
       }
