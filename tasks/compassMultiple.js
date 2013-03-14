@@ -9,9 +9,16 @@ module.exports = function(grunt) {
 
 
   // compass task works at multi threads.
-  var comileCompassAtMultiThread = function(options, sassDir, cssDir, cb) {
-    if (sassDir) {
-      glob(sassDir + '/**/*.scss', function(error, files) {
+  var comileCompassAtMultiThread = function(options, cb) {
+
+    // require check.
+    if (!options.sassDir) {
+      grunt.log.error('compass-multiple needs sassDir for searching scss files.');
+      cb(false);
+    }
+
+    if (options.sassDir) {
+      glob(options.sassDir + '/**/*.scss', function(error, files) {
         if (error) {
           console.log('error: ', error);
           cb(false);
@@ -89,11 +96,11 @@ module.exports = function(grunt) {
     // get options.
     var options = this.options();
 
-    // コンパイル対象のファイルを取得する。
+    // identify compiling targets.
     if (!options.multiple) {
       var sassDir = options.sassDir;
       var cssDir = options.cssDir;
-      comileCompassAtMultiThread(options, sassDir, cssDir, function(success) {
+      comileCompassAtMultiThread(options, function(success) {
         // calc execute time.
         var diff = new Date().getTime() - startDate.getTime();
         console.log('execTime: ' + diff + 'ms');
@@ -109,7 +116,7 @@ module.exports = function(grunt) {
       var doneCount = 0;
       for (var i = 0; i < multiple.length; i++) {
         var opt = multiple[i];
-        comileCompassAtMultiThread(opt, opt.sassDir, opt.cssDir, function(success) {
+        comileCompassAtMultiThread(opt, function(success) {
 
           if (!success) {
             done(false);

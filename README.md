@@ -34,7 +34,6 @@ grunt.initConfig({
   compassMultiple: {
     options : {
       // if you need, you can set options.
-      // but, you cannot use config.rb now. sorry...
       environment: 'production',
       outputStyle: 'compressed',
       javascriptsDir: './js',
@@ -70,6 +69,26 @@ grunt.initConfig({
   }
 });
 ```
+
+Or, you can use config.rb for build setting. Sample is below.
+
+```javascript
+grunt.initConfig({
+
+  compassMultiple: {
+    options : {
+      // you can use config.rb for build setting.
+      config: 'config.rb',
+      // sassDir must be set, for identify compiling targets.
+      sassDir: 'page/css/orgn/scss'
+    },
+
+    // compile task. no need any options.
+    common : {},
+  }
+});
+```
+
 
 
 License
