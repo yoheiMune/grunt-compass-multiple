@@ -42,8 +42,8 @@ grunt.initConfig({
     // At now, you can only set sassDir and cssDir options.
     common : {
       options: {
-        sassDir: 'page/css/cmn/mxm.css/_temp/',
-        cssDir: '../stat/page/css/cmn/'
+        sassDir: 'page/css/cmn/',
+        cssDir: '../static/page/css/cmn/'
       }
     },
 
@@ -52,11 +52,11 @@ grunt.initConfig({
       options: {
         multiple: [
           {
-          sassDir: 'page/css/cmn/mxm.css/_temp/',
-          cssDir: '../stat/page/css/cmn/'
+          sassDir: 'page/css/cmn/',
+          cssDir: '../static/page/css/cmn/'
           },{
           sassDir: 'page/css/orgn/scss',
-          cssDir: '../stat/page/css/orgn/'
+          cssDir: '../static/page/css/orgn/'
           }
         ]
       }
