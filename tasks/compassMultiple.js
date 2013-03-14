@@ -36,12 +36,6 @@ module.exports = function(grunt) {
 
             // compile scss file.
             var cmd = buildCommand(filePath, options);
-            // var cmd = 'compass compile %targetFile% --sass-dir=%sassDir% --time --css-dir=%cssDir%';
-            // cmd = cmd.replace('%targetFile%', filePath);
-            // cmd = cmd.replace('%sassDir%', sassDir);
-            // cmd = cmd.replace('%cssDir%', cssDir);
-            console.log('cmd: ', cmd);
-
             exec(cmd, function(error, stdout, stderr) {
               if (!error) {
                 stdout && console.log('stdout: ', stdout);
@@ -64,7 +58,6 @@ module.exports = function(grunt) {
   }
 
   var buildCommand = function(filePath, options) {
-
     var cmd = util.format('compass compile %s', filePath);
     if (options.config) {
       cmd = util.format('%s --config=%s', cmd, options.config);
@@ -79,6 +72,7 @@ module.exports = function(grunt) {
       options.time && (cmd = util.format('%s --time', cmd));
     }
 
+    // console.log('cmd: ', cmd);
     return cmd;
   };
 
@@ -111,7 +105,7 @@ module.exports = function(grunt) {
     } else {
 
       var multiple = options.multiple;
-      console.log('multiple: ', multiple);
+      // console.log('multiple: ', multiple);
 
       var targetCount = multiple.length;
       var doneCount = 0;
