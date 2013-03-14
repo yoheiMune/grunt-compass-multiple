@@ -1,6 +1,6 @@
 {
   "name": "grunt-compass-multiple",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "compass complie at multi threads.",
   "main": "compassMultiple.js",
   "scripts": {
