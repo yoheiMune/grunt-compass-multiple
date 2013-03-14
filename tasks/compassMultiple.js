@@ -38,16 +38,14 @@ module.exports = function(grunt) {
             cmd = cmd.replace('%targetFile%', filePath);
             cmd = cmd.replace('%sassDir%', sassDir);
             cmd = cmd.replace('%cssDir%', cssDir);
-            //console.log('cmd: ', cmd);
+            // console.log('cmd: ', cmd);
 
             exec(cmd, function(error, stdout, stderr) {
               if (!error) {
                 stdout && console.log('stdout: ', stdout);
-                stderr && console.log('stderr: ', stderr);
               } else {
                 console.log('error: ', error);
-                console.log('error.code: ', error.code);
-                console.log('error.signal: ', error.signal);
+                console.log('stdout: ', stdout);
                 cb(false);
               }
 
