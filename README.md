@@ -32,16 +32,22 @@ This plugin is a compiling compass files at multi threads, so you can save build
 grunt.initConfig({
 
   compassMultiple: {
-    // you can set compass options. but not work now. sorry..
     options : {
-          imagesDir: '',
-          time: true
+      // if you need, you can set options.
+      // but, you cannot use config.rb now. sorry...
+      environment: 'production',
+      outputStyle: 'compressed',
+      javascriptsDir: './js',
+      imagesDir: './image',
+      fontsDir: './font',
+      time: true
     },
 
     // you can specify compiling target as options.sassDir, and output dir as options.cssDir.
     // At now, you can only set sassDir and cssDir options.
     common : {
       options: {
+        // every compile need sassDir and cssDir.
         sassDir: 'page/css/cmn/',
         cssDir: '../static/page/css/cmn/'
       }
@@ -64,6 +70,7 @@ grunt.initConfig({
   }
 });
 ```
+
 
 License
 -------

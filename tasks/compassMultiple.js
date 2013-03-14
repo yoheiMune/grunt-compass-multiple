@@ -93,7 +93,6 @@ module.exports = function(grunt) {
     if (!options.multiple) {
       var sassDir = options.sassDir;
       var cssDir = options.cssDir;
-      console.log(sassDir);
       comileCompassAtMultiThread(options, sassDir, cssDir, function(success) {
         // calc execute time.
         var diff = new Date().getTime() - startDate.getTime();
@@ -105,8 +104,7 @@ module.exports = function(grunt) {
     } else {
 
       var multiple = options.multiple;
-      // console.log('multiple: ', multiple);
-
+      
       var targetCount = multiple.length;
       var doneCount = 0;
       for (var i = 0; i < multiple.length; i++) {
