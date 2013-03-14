@@ -5,10 +5,11 @@ module.exports = function(grunt) {
   // require modules.
   var exec = require('child_process').exec;
   var glob = require('glob');
+  var util = require('util');
 
 
   // compass task works at multi threads.
-  var comileCompassAtMultiThread = function(sassDir, cssDir, cb) {
+  var comileCompassAtMultiThread = function(options, sassDir, cssDir, cb) {
     if (sassDir) {
       glob(sassDir + '/**/*.scss', function(error, files) {
         if (error) {
@@ -34,11 +35,12 @@ module.exports = function(grunt) {
             }
 
             // compile scss file.
-            var cmd = 'compass compile %targetFile% --sass-dir=%sassDir% --time --css-dir=%cssDir%';
-            cmd = cmd.replace('%targetFile%', filePath);
-            cmd = cmd.replace('%sassDir%', sassDir);
-            cmd = cmd.replace('%cssDir%', cssDir);
-            // console.log('cmd: ', cmd);
+            var cmd = buildCommand(filePath, options);
+            // var cmd = 'compass compile %targetFile% --sass-dir=%sassDir% --time --css-dir=%cssDir%';
+            // cmd = cmd.replace('%targetFile%', filePath);
+            // cmd = cmd.replace('%sassDir%', sassDir);
+            // cmd = cmd.replace('%cssDir%', cssDir);
+            console.log('cmd: ', cmd);
 
             exec(cmd, function(error, stdout, stderr) {
               if (!error) {
@@ -61,6 +63,25 @@ module.exports = function(grunt) {
     }
   }
 
+  var buildCommand = function(filePath, options) {
+
+    var cmd = util.format('compass compile %s', filePath);
+    if (options.config) {
+      cmd = util.format('%s --config=%s', cmd, options.config);
+    } else {
+      options.sassDir && (cmd = util.format('%s --sass-dir=%s', cmd, options.sassDir));
+      options.cssDir && (cmd = util.format('%s --css-dir=%s', cmd, options.cssDir));
+      options.imagesDir && (cmd = util.format('%s --images-dir=%s', cmd, options.imagesDir));
+      options.javascriptsDir && (cmd = util.format('%s --javascripts-dir=%s', cmd, options.javascriptsDir));
+      options.fontsDir && (cmd = util.format('%s --fonts-dir=%s', cmd, options.fontsDir));
+      options.environment && (cmd = util.format('%s --environment=%s', cmd, options.environment));
+      options.outputStyle && (cmd = util.format('%s --output-style=%s', cmd, options.outputStyle));
+      options.time && (cmd = util.format('%s --time', cmd));
+    }
+
+    return cmd;
+  };
+
 
   // regist grunt multiple task.
   grunt.registerMultiTask('compassMultiple', 'Compass compile at multi threads.', function() {
@@ -79,7 +100,7 @@ module.exports = function(grunt) {
       var sassDir = options.sassDir;
       var cssDir = options.cssDir;
       console.log(sassDir);
-      comileCompassAtMultiThread(sassDir, cssDir, function(success) {
+      comileCompassAtMultiThread(options, sassDir, cssDir, function(success) {
         // calc execute time.
         var diff = new Date().getTime() - startDate.getTime();
         console.log('execTime: ' + diff + 'ms');
@@ -96,7 +117,7 @@ module.exports = function(grunt) {
       var doneCount = 0;
       for (var i = 0; i < multiple.length; i++) {
         var opt = multiple[i];
-        comileCompassAtMultiThread(opt.sassDir, opt.cssDir, function(success) {
+        comileCompassAtMultiThread(opt, opt.sassDir, opt.cssDir, function(success) {
 
           if (!success) {
             done(false);
