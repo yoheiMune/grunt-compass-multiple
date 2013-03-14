@@ -17,52 +17,59 @@ module.exports = function(grunt) {
       cb(false);
     }
 
-    if (options.sassDir) {
-      glob(options.sassDir + '/**/*.scss', function(error, files) {
-        if (error) {
-          console.log('error: ', error);
-          cb(false);
+    // search scss files.
+    var searchPath = options.sassDir + '/**/*.scss';
+    glob(searchPath, function(error, files) {
+      if (error) {
+        console.log('error: ', error);
+        cb(false);
+      }
+
+      // compass compile.
+      compileFiles(options, files, cb);
+    });
+  };
+
+
+  var compileFiles = function(options, files, cb) {
+
+    // variable for judge finish.
+    var targetCount = files.length;
+    var doneCount = 0;
+
+    // compass compile pallalel;
+    for (var i = 0; i < files.length; i++) {
+      var filePath = files[i];
+
+      // skip if the file is private.
+      var fragment = filePath.split('/');
+      var fileName = fragment[fragment.length - 1];
+      if (fileName.indexOf('_') === 0) {
+        doneCount++;
+        // console.log('skip to compile. target is private file: ', filePath);
+        continue;
+      }
+
+      // compile scss file.
+      var cmd = buildCommand(filePath, options);
+      exec(cmd, function(error, stdout, stderr) {
+        if (!error) {
+          stdout && console.log('stdout: ', stdout);
         } else {
-          // console.log('files: ', files);
+          console.log('error: ', error);
+          console.log('stdout: ', stdout);
+          cb(false);
+        }
 
-          var targetCount = files.length;
-          var doneCount = 0;
-
-
-          // compass compile pallalel;
-          for (var i = 0; i < files.length; i++) {
-            var filePath = files[i];
-
-            // skip if the file is private.
-            var fragment = filePath.split('/');
-            var fileName = fragment[fragment.length - 1];
-            if (fileName.indexOf('_') === 0) {
-              console.log('skip to compile. target is private file: '. filePath);
-              continue;
-            }
-
-            // compile scss file.
-            var cmd = buildCommand(filePath, options);
-            exec(cmd, function(error, stdout, stderr) {
-              if (!error) {
-                stdout && console.log('stdout: ', stdout);
-              } else {
-                console.log('error: ', error);
-                console.log('stdout: ', stdout);
-                cb(false);
-              }
-
-              // judge end.
-              doneCount++;
-              if (doneCount === targetCount) {
-                cb(true);
-              }
-            });
-          }
+        // judge end.
+        doneCount++;
+        if (doneCount === targetCount) {
+          cb(true);
         }
       });
     }
-  }
+
+  };
 
   var buildCommand = function(filePath, options) {
     var cmd = util.format('compass compile %s', filePath);
