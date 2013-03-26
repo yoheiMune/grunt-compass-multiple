@@ -83,6 +83,7 @@ module.exports = function(grunt) {
       options.fontsDir && (cmd = util.format('%s --fonts-dir=%s', cmd, options.fontsDir));
       options.environment && (cmd = util.format('%s --environment=%s', cmd, options.environment));
       options.outputStyle && (cmd = util.format('%s --output-style=%s', cmd, options.outputStyle));
+      options.importPath && (cmd = util.format('%s -I %s', cmd, options.importPath));
       options.time && (cmd = util.format('%s --time', cmd));
     }
 
@@ -128,6 +129,7 @@ module.exports = function(grunt) {
         opt.javascriptsDir === undefined && (opt.javascriptsDir = options.javascriptsDir);
         opt.imagesDir === undefined && (opt.imagesDir = options.imagesDir);
         opt.fontsDir === undefined && (opt.fontsDir = options.fontsDir);
+        opt.importPath === undefined && (opt.importPath = options.importPath);
         opt.time === undefined && (opt.time = options.time);
 
 
