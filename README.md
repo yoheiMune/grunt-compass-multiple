@@ -24,6 +24,7 @@ Documentation
 -------------
 
 This plugin slove the problem of compass slow compile.
+
 This provides you to compass multi threads compiling, so you can develop faster.
 
 the statement below is how to use this plugin.
