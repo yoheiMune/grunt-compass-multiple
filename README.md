@@ -39,6 +39,7 @@ grunt.initConfig({
       javascriptsDir: './js',
       imagesDir: './image',
       fontsDir: './font',
+      importPath: './css/framework',
       time: true
     },
 
