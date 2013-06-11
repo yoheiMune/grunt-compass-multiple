@@ -123,7 +123,7 @@ grunt.initConfig({
 
 
 
-### Example4(sassFiles options)
+### Example4(use sassFiles options)
 You can identify compile targets files, if you use sassFiles option.
 
 ```javascript
