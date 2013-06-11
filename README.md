@@ -29,7 +29,7 @@ This provides you to compass multi threads compiling, so you can develop faster.
 
 the statement below is how to use this plugin.
 
-### Example
+### Example1
 
 ```javascript
 grunt.initConfig({
@@ -54,9 +54,31 @@ grunt.initConfig({
         sassDir: 'page/css/cmn/',
         cssDir: '../static/page/css/cmn/'
       }
+    }
+  }
+});
+```
+
+
+### Example2(use multiple options)
+you can set multiple sassDir and cssDir for compiling.
+```javascript
+grunt.initConfig({
+
+  compassMultiple: {
+    options : {
+      // if you need, you can set options.
+      environment: 'production',
+      outputStyle: 'compressed',
+      javascriptsDir: './js',
+      imagesDir: './image',
+      fontsDir: './font',
+      importPath: './css/framework',
+      time: true
     },
 
-    // you can multiple sassDir and cssDir, using multiple options.
+
+    // multiple option provides you to compile multi sassDir.
     all: {
       options: {
         multiple: [
@@ -74,7 +96,10 @@ grunt.initConfig({
 });
 ```
 
-Or, you can use config.rb for build setting. Sample is below.
+
+
+### Example3(use config.rb)
+You can use config.rb for build setting. Sample is below.
 
 ```javascript
 grunt.initConfig({
@@ -92,6 +117,38 @@ grunt.initConfig({
   }
 });
 ```
+
+
+
+
+
+
+### Example3(sassFiles options)
+You can identify compile targets files, if you use sassFiles option.
+
+```javascript
+grunt.initConfig({
+
+    compassMultiple: {
+      options : {
+        javascriptsDir: 'js',
+        imagesDir: 'img',
+      },
+
+      // you can set compile target sass files at sassFiles.
+      // and you must be set sassDir for compiling option. This is compass command restriction.
+      sassFilesTest: {
+        options: {
+          sassDir: 'css3/scss',
+          sassFiles: ['css3/scss/sample*.scss', 'css3/scss/hoge*.scss'],
+          cssDir: ['css3/css'],
+        }
+      }
+    },
+});
+```
+
+
 
 
 
