@@ -140,7 +140,7 @@ grunt.initConfig({
       sassFilesTest: {
         options: {
           sassDir: 'css3/scss',
-          sassFiles: ['css3/scss/sample*.scss', 'css3/scss/hoge*.scss'],
+          sassFiles: ['css3/scss/sample*.scss', 'css3/scss/hoge.scss'],
           cssDir: ['css3/css'],
         }
       }

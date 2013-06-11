@@ -26,15 +26,23 @@
       if (options.sassFiles) {
 
         var pathes = options.sassFiles;
+        var pathesCount = pathes.length;
+        var currentCount = 0;
+        var files = [];
         for (var i = 0; i < pathes.length; i++) {
-          glob(pathes[i], function(error, files) {
+          glob(pathes[i], function(error, tmpFiles) {
             if (error) {
               console.log('error: ', error);
               cb(false);
             }
 
-            // compass compile.
-            compileFiles(options, files, cb);
+            files = files.concat(tmpFiles);
+            currentCount++;
+            if (pathesCount === currentCount) {
+              // compass compile.
+              grunt.log.writeln('pathes: ', files);
+              compileFiles(options, files, cb);
+            }
           });
         }
 

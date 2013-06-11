@@ -68,7 +68,8 @@ module.exports = function(grunt) {
 					files: [
 						'./Gruntfile.js',
 						'./css/scss/*.scss',
-						'./css2/scss/.scss'
+						'./css2/scss/.scss',
+						'./node_modules/**/*.js',
 					],
 					tasks: [
 						'compassMultiple'
