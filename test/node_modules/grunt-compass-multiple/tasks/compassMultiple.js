@@ -41,7 +41,7 @@
 
 
 
-      } else {  // use sassFiles
+      } else {  // use sassDir
 
 
         var searchPath = options.sassDir + '/**/*.scss';
