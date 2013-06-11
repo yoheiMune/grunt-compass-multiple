@@ -1,0 +1,16 @@
+/* line 6, ../scss/hoge.scss */
+.frame {
+  width: 100%;
+  min-height: 414px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px dashed #ccc;
+}
+/* line 13, ../scss/hoge.scss */
+.frame .title {
+  font-size: 300%;
+  color: #ffff00;
+  text-align: center;
+}

@@ -1,6 +1,5 @@
 
 
-
 module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-compass-multiple');
@@ -14,7 +13,7 @@ module.exports = function(grunt) {
 			compassMultiple: {
 				options : {
 					javascriptsDir: 'js',
-	      	imagesDir: 'img',
+			      	imagesDir: 'img',
 					sassDir: 'css/scss',
 					cssDir: 'css'
 				},
@@ -34,21 +33,30 @@ module.exports = function(grunt) {
 
 
 				// TEST: Multi Task
-		    multiTask: {
-		    	options: {
-		    		multiple: [
-		    			{
-			    			// common
-								sassDir: 'css/scss',
-								cssDir: 'css'
-		    			},{
-		    				// orginal
-								sassDir: 'css2/scss',
-								cssDir: 'css2'
-		    			}
-		    		]
-		    	}
-		    },
+			    multiTask: {
+			    	options: {
+			    		multiple: [
+			    			{
+				    			// common
+									sassDir: 'css/scss',
+									cssDir: 'css'
+			    			},{
+			    				// orginal
+									sassDir: 'css2/scss',
+									cssDir: 'css2'
+			    			}
+			    		]
+			    	}
+			    },
+
+			    // TEST: sassFiles option
+			    sassFilesTest: {
+			    	options: {
+			    		sassDir: 'css3/scss',
+			    		sassFiles: ['css3/scss/sample*.scss', 'css3/scss/hoge*.scss'],
+			    		cssDir: ['css3/css'],
+			    	}
+			    }
 			},
 
 
