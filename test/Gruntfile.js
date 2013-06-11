@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 					javascriptsDir: 'js',
 			      	imagesDir: 'img',
 					sassDir: 'css/scss',
-					cssDir: 'css'
+					cssDir: 'css',
+					relativeAssets: true,
 				},
 
 				// Test: Basic

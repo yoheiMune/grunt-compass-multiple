@@ -74,6 +74,7 @@ grunt.initConfig({
       imagesDir: './image',
       fontsDir: './font',
       importPath: './css/framework',
+      relativeAssets: true,
       time: true
     },
 

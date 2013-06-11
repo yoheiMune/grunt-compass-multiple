@@ -123,6 +123,7 @@
         options.environment && (cmd = util.format('%s --environment=%s', cmd, options.environment));
         options.outputStyle && (cmd = util.format('%s --output-style=%s', cmd, options.outputStyle));
         options.importPath && (cmd = util.format('%s -I %s', cmd, options.importPath));
+        options.relativeAssets && (cmd = util.format('%s --relative-assets', cmd));
         options.time && (cmd = util.format('%s --time', cmd));
       }
 
@@ -175,6 +176,7 @@
           opt.imagesDir === undefined && (opt.imagesDir = options.imagesDir);
           opt.fontsDir === undefined && (opt.fontsDir = options.fontsDir);
           opt.importPath === undefined && (opt.importPath = options.importPath);
+          opt.relativeAssets === undefined && (opt.relativeAssets = options.relativeAssets);
           opt.time === undefined && (opt.time = options.time);
 
 
