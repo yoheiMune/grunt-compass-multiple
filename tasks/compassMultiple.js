@@ -125,6 +125,7 @@
         options.importPath && (cmd = util.format('%s -I %s', cmd, options.importPath));
         options.relativeAssets && (cmd = util.format('%s --relative-assets', cmd));
         options.time && (cmd = util.format('%s --time', cmd));
+        options.debugInfo && (cmd = util.format('%s --debug-info', cmd));
       }
 
       // console.log('cmd: ', cmd);
@@ -178,6 +179,7 @@
           opt.importPath === undefined && (opt.importPath = options.importPath);
           opt.relativeAssets === undefined && (opt.relativeAssets = options.relativeAssets);
           opt.time === undefined && (opt.time = options.time);
+          opt.debugInfo === undefined && (opt.debugInfo = options.debugInfo);
 
 
           comileCompassAtMultiThread(opt, function(success) {

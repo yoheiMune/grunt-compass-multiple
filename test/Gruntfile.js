@@ -33,6 +33,14 @@ module.exports = function(grunt) {
 				},
 
 
+				// Test: Additional Options2
+				manyOptions2: {
+					options: {
+						debugInfo: true,
+					}
+				},
+
+
 				// TEST: Multi Task
 			    multiTask: {
 			    	options: {
