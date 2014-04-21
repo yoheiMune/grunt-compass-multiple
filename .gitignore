@@ -1,6 +1,7 @@
 
 # modules.
 node_modules
+test/node_modules
 
 # OS
 .DS_Store
