@@ -3,6 +3,9 @@
 node_modules
 test/node_modules
 
+# work directories.
+test/.sass-cache
+
 # OS
 .DS_Store
 

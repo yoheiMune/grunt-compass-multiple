@@ -1,0 +1,25 @@
+//
+// top.scss
+//
+@import "compass";
+
+.frame {
+  width: 100%;
+  min-height: 414px;
+  @include box-sizing(border-box);
+  padding: 10px;
+  border: 1px dashed #ccc;
+
+  .title {
+    font-size: 300%;
+    color: #ffff00;
+    text-align: center;
+  }
+}
+
+.icon {
+  background-image: './img/feed.png';
+}
+.iconInline {
+  background-image: inline-image('feed.png');
+}
