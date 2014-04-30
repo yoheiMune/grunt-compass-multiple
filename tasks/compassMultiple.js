@@ -75,6 +75,7 @@
       // variable for judge finish.
       var targetCount = files.length;
       var doneCount = 0;
+      var finalNewline = /\n(?=[^\n]*$)/;
 
       // compass compile pallalel;
       for (var i = 0; i < files.length; i++) {
@@ -93,7 +94,7 @@
         var cmd = buildCommand(filePath, options);
         exec(cmd, function(error, stdout, stderr) {
           if (!error) {
-            stdout && console.log('stdout: ', stdout);
+            stdout && console.log(stdout.replace(finalNewline, ''));
           } else {
             console.log('error: ', error);
             console.log('stdout: ', stdout);
