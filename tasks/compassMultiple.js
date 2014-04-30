@@ -159,7 +159,7 @@
         comileCompassAtMultiThread(options, function(success) {
           // calc execute time.
           var diff = new Date().getTime() - startDate.getTime();
-          console.log('execTime: ' + diff + 'ms');
+          console.log('Compilation took ' + (diff / 1000) + 'ms');
           done(success);
         });
 
