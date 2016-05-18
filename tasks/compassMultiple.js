@@ -28,8 +28,8 @@
             console.log('error: ', error);
             console.log('stdout: ', stdout);
           }
+          cb(true);
         });
-        cb(true);
       } else if (options.sassFiles) {
         // search scss files.(Additional Implementation)
 
