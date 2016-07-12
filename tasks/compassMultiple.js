@@ -21,7 +21,7 @@
         // compile scss file.
         var filePath = '';
         var cmd = buildCommand(filePath, options);
-        exec(cmd, function(error, stdout, stderr) {
+        exec(cmd, {maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
           if (!error) {
             stdout && console.log('stdout: ', stdout);
           } else {
