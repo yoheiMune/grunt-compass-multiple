@@ -16,14 +16,22 @@
     // compass task works at multi threads.
     var comileCompassAtMultiThread = function(options, cb) {
 
-      // if no sassDir or files are not identify, error.
-      if (!options.sassDir) {
-        grunt.log.error('compass-multiple needs sassDir for searching scss files.');
-        cb(false);
-      }
-
-      // search scss files.(Additional Implementation)
-      if (options.sassFiles) {
+      // If sassDir isnt present but config.rb is, try to build.
+      if (!options.hasOwnProperty('sassDir') && options.hasOwnProperty('config')) {
+        // compile scss file.
+        var filePath = '';
+        var cmd = buildCommand(filePath, options);
+        exec(cmd, {maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
+          if (!error) {
+            stdout && console.log('stdout: ', stdout);
+          } else {
+            console.log('error: ', error);
+            console.log('stdout: ', stdout);
+          }
+          cb(true);
+        });
+      } else if (options.sassFiles) {
+        // search scss files.(Additional Implementation)
 
         var pathes = options.sassFiles;
         var pathesCount = pathes.length;
